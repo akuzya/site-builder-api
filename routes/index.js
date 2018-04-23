@@ -3,8 +3,8 @@ const router = express.Router();
 const passport = require("passport");
 
 const { checkRole, getMe } = require("../libs/auth.js");
+const { xsollaLogin } = require("../workers/xsollaLogin");
 const { fileUpload } = require("../libs/file");
-
 const { getUsersList, newUser, changeUser } = require("../workers/users");
 const { getHTML } = require("../workers/createHTML");
 
@@ -43,15 +43,14 @@ function logout(req, res) {
   res.json({ error: null });
 }
 
-
-router.post("/login", login);
+router.post("/login", xsollaLogin);
+router.post("/testlogin", login);
 router.get("/logout", logout);
 router.get("/getme", getMe);
 
 router.get("/getuserslist", checkRole("administrator"), getUsersList);
 router.post("/newuser", checkRole("administrator"), newUser);
 router.post("/updateuser", checkRole("administrator"), changeUser);
-
 
 // router.get("/getparts", checkRole(), getParts);
 // router.post("/setpart", checkRole("administrator"), setPart);
@@ -69,7 +68,5 @@ router.post("/saveparts", saveParts);
 router.get("/createhtml", getHTML);
 
 router.post("/fileupload", fileUpload);
-
-
 
 module.exports = router;

@@ -13,7 +13,8 @@ module.exports = {
     // console.log('role user: ', req.user.role);
 
     let user = _.assign({}, req.user && req.user._doc);
-
+    user.xsollaUserId = undefined;
+    user.xsollaToken = undefined;
     user.hashedPassword = undefined;
     user.salt = undefined;
 
@@ -23,7 +24,6 @@ module.exports = {
     const err = new Error("Пользователь не авторизован");
     err.status = 403;
     return (req, res, next) => {
-      
       if (!req.user) return next(err);
       if (!role || !role.lenght)
         return req.isAuthenticated() ? lastEnter(req.user, next) : next(err);

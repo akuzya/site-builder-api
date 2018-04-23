@@ -11,7 +11,6 @@ const path = require("path");
 const fs = require("fs");
 const Zip = require("node-native-zip");
 
-const { Project } = require("../models/project");
 const { Structure } = require("../models/structure");
 // const { Part } = require("../models/part");
 
@@ -124,8 +123,7 @@ function getHTML(req, res, next) {
     return next(error);
   }
 
-  Project.findById(_id).exec((err, project) => {
-    Structure.findOne({ project })
+    Structure.findOne({ _id })
       .populate("parts.part")
       .exec((err, struct) => {
         createHTML(struct.parts, (html, images) => {
@@ -136,7 +134,6 @@ function getHTML(req, res, next) {
           });
         });
       });
-  });
 }
 
 function createZip(html, images, done) {

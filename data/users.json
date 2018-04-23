@@ -1,8 +1,9 @@
 [
-    {
-        "name":"Александр Кузнецов",
-        "email":"a@kzntsv.ru",
-        "password":"1",
-        "role":"administrator"
-    }
+  {
+    "name": "Александр Кузнецов",
+    "email": "a@kzntsv.ru",
+    "password": "1",
+    "role": "administrator",
+    "xsollaProject": "764257326"
+  }
 ]

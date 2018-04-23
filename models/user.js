@@ -13,6 +13,10 @@ var schema = new Schema({
     type: String,
     index: true
   },
+  xsollaProject:{
+    type: String,
+    index: true
+  },
   xsollaToken:{
     type: String
   },
