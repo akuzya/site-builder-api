@@ -1,0 +1,87 @@
+[
+  {
+    "project": "Тестовый проект",
+    "parts": [
+      {
+        "idx": 1,
+        "part": "Шапка",
+        "values": [
+          {
+            "key": "logo",
+            "value": "logo.png"
+          },
+          {
+            "key": "mainText",
+            "value": "Заголовок"
+          },
+          {
+            "key": "subText",
+            "value": [
+              "Тут распологается описание станицы",
+              "Можно делать несколько параграфов"
+            ]
+          },
+          {
+            "key": "background",
+            "value": {
+              "color": "#0a0000",
+              "img": "background.jpg",
+              "cover": false
+            }
+          }
+        ]
+      },
+      {
+        "idx": 2,
+        "part": "Подвал",
+        "values": [
+          {
+            "key": "address",
+            "value": [
+              {
+                "text": "560034, г. Калдырь, Андмунсена 16/2 стр. 1",
+                "fontSize": 30
+              },
+              {
+                "text": "+7 999 999 99 98",
+                "fontSize": 12
+              }
+            ]
+          },
+          {
+            "key": "copyright",
+            "value": "Изготовлено в ДжетСтайл"
+          },
+          {
+            "key": "social",
+            "value": [
+              {
+                "text": "facebook",
+                "icon": "facebook.png",
+                "url": "https://fb.com"
+              },
+              {
+                "text": "vkontakte",
+                "icon": "vkontakte.png",
+                "url": "https://vk.com"
+              },
+              {
+                "text": "odnoklassniki",
+                "icon": "odnoklassniki.png",
+                "url": "https://od.com"
+              }
+            ]
+          },
+          {
+            "key": "background",
+            "value":{
+                "color": "#020202",
+                "img": "background.jpg",
+                "cover": true
+              }
+          }
+        ]
+      }
+    ]
+  }
+]

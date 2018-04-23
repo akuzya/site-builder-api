@@ -1,0 +1,128 @@
+[
+  {
+    "name": "Шапка",
+    "template": "Header",
+    "fields": [
+      {
+        "name": "logo",
+        "type": "Image"
+      },
+      {
+        "name": "mainText",
+        "type": "String",
+        "default": "Caption here"
+      },
+      {
+        "name": "subText",
+        "type": "Array",
+        "schem": "String",
+        "default": ["Description one", "Description two"]
+      },
+      {
+        "name": "background",
+        "type": "Object",
+        "schem": {
+          "color": "Color",
+          "img": "Image",
+          "cover": "Boolean"
+        },
+        "default": {
+          "color": "#020202",
+          "img": "headerbackground.jpg",
+          "cover": true
+        }
+      }
+    ]
+  },
+  {
+    "name": "Подвал",
+    "template": "Footer",
+    "fields": [
+      {
+        "name": "address",
+        "type": "Array",
+        "schem": {
+          "text": "String",
+          "fontSize": "Integer"
+        },
+        "default": [
+          {
+            "text": "City here",
+            "fontSize": 42
+          },
+          {
+            "text": "Street here",
+            "fontSize": 24
+          },
+          {
+            "text": "Phone number here",
+            "fontSize": 24
+          }
+        ]
+      },
+      {
+        "name": "copyright",
+        "type": "String",
+        "default": "Copyright here"
+      },
+      {
+        "name": "social",
+        "type": "Array",
+        "schem": {
+          "text": "String",
+          "icon": "Image",
+          "url": "Url"
+        },
+        "range": [
+          {
+            "text": "facebook",
+            "icon": "facebook.png"
+          },
+          {
+            "text": "vkontakte",
+            "icon": "vkontakte.png"
+          },
+          {
+            "text": "odnoklassniki",
+            "icon": "odnoklassniki.png"
+          },
+          {
+            "text": "instagram",
+            "icon": "instagram.png"
+          }
+        ],
+        "default": [
+          {
+            "text": "facebook",
+            "icon": "facebook.png",
+            "url": "https://fb.com"
+          },
+          {
+            "text": "vkontakte",
+            "icon": "vkontakte.png",
+            "url": "https://vk.com"
+          },
+          {
+            "text": "odnoklassniki",
+            "icon": "odnoklassniki.png",
+            "url": "https://od.com"
+          }
+        ]
+      },
+      {
+        "name": "background",
+        "type": "Object",
+        "schem": {
+          "color": "Color",
+          "img": "Image",
+          "cover": "Boolean"
+        },
+        "default": {
+          "color": "#020202",
+          "img": "footerbackground.jpg",
+          "cover": true
+        }
+      }
+    ]
+  }
+]

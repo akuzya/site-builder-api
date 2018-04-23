@@ -5,15 +5,16 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('site-builder-api:server');
+var debug = require('debug')('server:server');
 var http = require('http');
-
+const {appPort} = require('../config');
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || appPort);
 app.set('port', port);
+console.log('port: ', port);
 
 /**
  * Create HTTP server.
