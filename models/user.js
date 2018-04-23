@@ -9,6 +9,13 @@ var config = require("../config.js");
 var debug = require("debug")("server:server");
 
 var schema = new Schema({
+  xsollaUserId:{
+    type: String,
+    index: true
+  },
+  xsollaToken:{
+    type: String
+  },
   email: {
     type: String,
     index: true

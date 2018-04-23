@@ -7,11 +7,7 @@ const { fileUpload } = require("../libs/file");
 
 const { getUsersList, newUser, changeUser } = require("../workers/users");
 const { getHTML } = require("../workers/createHTML");
-const {
-  getProjects,
-  newProject,
-  deleteProject
-} = require("../workers/projects");
+
 const { getParts, setPart } = require("../workers/parts");
 const {
   getStructure,
@@ -56,9 +52,6 @@ router.get("/getuserslist", checkRole("administrator"), getUsersList);
 router.post("/newuser", checkRole("administrator"), newUser);
 router.post("/updateuser", checkRole("administrator"), changeUser);
 
-router.get("/getprojects", checkRole(), getProjects);
-router.post("/newproject", checkRole(), newProject);
-router.post("/deleteproject", checkRole(), deleteProject);
 
 // router.get("/getparts", checkRole(), getParts);
 // router.post("/setpart", checkRole("administrator"), setPart);

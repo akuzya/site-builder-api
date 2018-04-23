@@ -4,11 +4,15 @@ const mongoose = require("mongoose"),
 const _ = require("lodash");
 const async = require("async");
 
-const { Project } = require("./project");
 const { Part } = require("./part");
 
 const schema = new Schema({
-  project: { type: mongoose.Schema.ObjectId, ref: "Project", index: true },
+  project: { type: String, index: true },
+  globalValues:[{
+    key: { type: String },
+    value: { type: Schema.Types.Mixed }
+  }],
+  globalStyles:{ type: Schema.Types.Mixed },
   parts: [
     {
       idx: { type: Number },
@@ -19,7 +23,8 @@ const schema = new Schema({
           key: { type: String },
           value: { type: Schema.Types.Mixed }
         }
-      ]
+      ],
+      styles:{ type: Schema.Types.Mixed }
     }
   ]
 });
@@ -33,8 +38,6 @@ setTimeout(() => {
     if (!struct) {
       _.each(initValues, el => {
         struct = new Structure();
-        Project.findOne({ name: el.project }).exec((err, project) => {
-          struct.project = project;
           async.each(
             el.parts,
             (el2, next) => {
@@ -49,7 +52,6 @@ setTimeout(() => {
             }
           );
         });
-      });
     }
   });
 }, 600);
