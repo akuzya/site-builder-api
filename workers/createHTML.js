@@ -33,13 +33,8 @@ function mapObject(values, schema, images) {
 }
 
 function createPart(part, values, images, done) {
-  let p = path.join(__dirname, "../../client/src/parts", `${part.template}.js`);
-  // console.log("p: ", p);
-
-  // console.log(
-  //   ": ",
-  //   path.join(__dirname, "../node_modules", "babel-preset-env")
-  // );
+  let d = path.join(__dirname, "../../client/src/parts");
+  let p = path.join(d, `${part.template}.js`);
 
   let presets = [
     path.join(__dirname, "../node_modules", "babel-preset-env"),
@@ -47,7 +42,12 @@ function createPart(part, values, images, done) {
     path.join(__dirname, "../node_modules", "babel-preset-stage-2")
   ];
 
-  babel.transformFile(p, { presets }, (err, { code, map, ast }) => {
+  let options = {
+    presets,
+    sourceRoot: d
+  };
+
+  babel.transformFile(p, options, (err, { code, map, ast }) => {
     console.log("code: ", code, map, ast);
 
     let component = eval(code); //NOSONAR
@@ -123,17 +123,17 @@ function getHTML(req, res, next) {
     return next(error);
   }
 
-    Structure.findOne({ _id })
-      .populate("parts.part")
-      .exec((err, struct) => {
-        createHTML(struct.parts, (html, images) => {
-          createZip(html, images, zip => {
-            res.set("Content-Type", "application/zip");
-            res.set("Content-Disposition", "attachment; filename=site.zip");
-            res.send(zip);
-          });
+  Structure.findOne({ _id })
+    .populate("parts.part")
+    .exec((err, struct) => {
+      createHTML(struct.parts, (html, images) => {
+        createZip(html, images, zip => {
+          res.set("Content-Type", "application/zip");
+          res.set("Content-Disposition", "attachment; filename=site.zip");
+          res.send(zip);
         });
       });
+    });
 }
 
 function createZip(html, images, done) {

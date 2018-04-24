@@ -167,25 +167,3 @@ schema.statics.createNew = function(email, password, obj, callback) {
 
 const User = exports.User = mongoose.model("User", schema);
 
-const initUsersArray = require("../data/users.json");
-
-async.each(
-  initUsersArray,
-  (el, next) => {
-    User.findOne({ email: el.email }, (err, user) => {
-      console.log('err, user: ', err, user);
-      
-      if (!user) {
-        console.log('el.email, el.password: ', el.email, el.password);
-        
-        User.createNew(el.email, el.password, el, (err, usr) => {
-          debug("create new admin: ", usr);
-          next();
-        });
-      } else return next();
-    });
-  },
-  err => {
-    // debug("init user list: ", _.map(initUsersArray, "email"));
-  }
-);

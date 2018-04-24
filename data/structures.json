@@ -1,84 +1,30 @@
 [
   {
-    "project": "Тестовый проект",
+    "project": "1111",
+    "globalValues": [
+      {"key":"videoBackground", "value":true},
+      {"key":"pictureBackground", "value":false},
+      {"key":"video", "value":"97236432794"},
+      {"key":"image", "value":"746542765.jpg"},
+      {"key":"textColor", "value":"rgba(33,33,45,1)"},
+      {"key":"accentColor", "value":"rgba(133,33,145,0.7)"},
+      {"key":"bgColor", "value":"rgba(0,0,0,0.3)"},
+      {"key":"buttonBorderRadius", "value":21},
+      {"key":"languages", "value":["en", "ru", "cn"]}
+    ],
     "parts": [
       {
         "idx": 1,
         "part": "Шапка",
+        "visible":true,
         "values": [
           {
-            "key": "logo",
-            "value": "logo.png"
+            "key": "backgroundColor",
+            "value": "#f0f0f0"
           },
           {
             "key": "mainText",
-            "value": "Заголовок"
-          },
-          {
-            "key": "subText",
-            "value": [
-              "Тут распологается описание станицы",
-              "Можно делать несколько параграфов"
-            ]
-          },
-          {
-            "key": "background",
-            "value": {
-              "color": "#0a0000",
-              "img": "background.jpg",
-              "cover": false
-            }
-          }
-        ]
-      },
-      {
-        "idx": 2,
-        "part": "Подвал",
-        "values": [
-          {
-            "key": "address",
-            "value": [
-              {
-                "text": "560034, г. Калдырь, Андмунсена 16/2 стр. 1",
-                "fontSize": 30
-              },
-              {
-                "text": "+7 999 999 99 98",
-                "fontSize": 12
-              }
-            ]
-          },
-          {
-            "key": "copyright",
-            "value": "Изготовлено в ДжетСтайл"
-          },
-          {
-            "key": "social",
-            "value": [
-              {
-                "text": "facebook",
-                "icon": "facebook.png",
-                "url": "https://fb.com"
-              },
-              {
-                "text": "vkontakte",
-                "icon": "vkontakte.png",
-                "url": "https://vk.com"
-              },
-              {
-                "text": "odnoklassniki",
-                "icon": "odnoklassniki.png",
-                "url": "https://od.com"
-              }
-            ]
-          },
-          {
-            "key": "background",
-            "value":{
-                "color": "#020202",
-                "img": "background.jpg",
-                "cover": true
-              }
+            "value": "Caption here"
           }
         ]
       }

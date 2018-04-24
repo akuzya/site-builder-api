@@ -13,18 +13,34 @@ const _ = require("lodash");
 const { Structure } = require("../models/structure");
 const { Part } = require("../models/part");
 
-function getStructure(req, res, next) {
-  let { _id } = req.query;
+const defaultGlobalValues = [
+  { key: "videoBackground", value: true },
+  { key: "pictureBackground", value: false },
+  { key: "video", value: "97236432794" },
+  { key: "image", value: "746542765.jpg" },
+  { key: "textColor", value: "rgba(33,33,45,1)" },
+  { key: "accentColor", value: "rgba(133,33,145,0.7)" },
+  { key: "bgColor", value: "rgba(0,0,0,0.3)" },
+  { key: "buttonBorderRadius", value: 21 },
+  { key: "languages", value: ["en", "ru", "cn"] }
+];
 
-  if (!_id) {
+function getStructure(req, res, next) {
+  let { project } = req.query;
+
+  if (!project) {
     const error = new Error("Не заполнен ид проекта");
     error.status = 401;
     return next(error);
   }
 
-  Structure.findOne({ project: _id }).exec((err, structure) => {
+  Structure.findOne({ project }).exec((err, structure) => {
     if (!structure) {
-      structure = new Structure({ project: _id, parts: [] });
+      structure = new Structure({
+        project,
+        globalValues: defaultGlobalValues,
+        parts: []
+      });
       structure.save(error => res.json({ error, structure }));
     } else res.json({ error: null, structure });
   });
@@ -122,12 +138,23 @@ function restoreParts(req, res, next) {
 }
 
 function saveParts(req, res, next) {
-  const { _id, part_id, part } = req.body;
+  let { _id, part_id, part } = req.body;
+
+  try {
+    part = JSON.parse(part);
+  } catch (e) {
+    console.log("part json parse error: ", e);
+  }
 
   Structure.findById(_id, (err, structure) => {
-    _.each(structure.parts, el => {
-      if (String(el._id) === String(part_id)) el = part;
-    });
+    let fIdx = structure.parts.findIndex(
+      el => String(el._id) === String(part_id)
+    );
+    let tArr = [...structure.parts];
+    tArr.splice(fIdx, 1, part);
+    console.log("tArr: ", tArr);
+
+    structure.parts = tArr;
 
     structure.markModified("parts");
     structure.save(error => res.json({ error, structure }));
